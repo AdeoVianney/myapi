@@ -1,0 +1,17 @@
+FROM python:2.7-slim
+
+COPY install/Flask-Cache-0.13.adeo.1.tar.gz install/FlaskIT-2.4.0.tar.gz /
+
+RUN apt-get update && apt-get install --no-install-recommends -y gcc python-dev \
+    && pip install --no-cache-dir /Flask-Cache-0.13.adeo.1.tar.gz \
+    /FlaskIT-2.4.0.tar.gz \
+    && apt-get autoremove -y gcc python-dev \
+    && rm -rf /var/cache/apt/* /var/lib/apt/lists/*
+
+COPY conf /api/conf
+COPY def /api/def
+COPY env /api/env
+COPY resources /api/resources
+WORKDIR /api
+
+CMD ["flaskit_launcher.py", "--env", "myapi.default", "--dir", "."]

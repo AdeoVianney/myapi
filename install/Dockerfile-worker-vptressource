@@ -1,0 +1,9 @@
+FROM python:2.7-slim
+
+COPY consumer-vptressource /app
+WORKDIR /app
+
+RUN pip install --no-cache-dir .
+
+ENTRYPOINT ["/bin/bash"]
+CMD ["/usr/local/bin/run-worker"]

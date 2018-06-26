@@ -1,0 +1,65 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: install/Dockerfile-api
+    depends_on:
+    - sentinel
+    environment:
+      REDIS_DB: 1
+      SENTINEL_HOST: sentinel
+      SENTINEL_PORT: 26379
+    image: adeo/api-myapi
+    ports:
+    - 5000:5000
+    restart: always
+  redis-0:
+    command:
+    - redis-server
+    - --port
+    - '6379'
+    image: redis:4
+    restart: always
+  redis-1:
+    command:
+    - redis-server
+    - --port
+    - '6379'
+    - --slaveof
+    - redis-0
+    - '6379'
+    image: redis:4
+    restart: always
+  redis-2:
+    command:
+    - redis-server
+    - --port
+    - '6379'
+    - --slaveof
+    - redis-0
+    - '6379'
+    image: redis:4
+    restart: always
+  sentinel:
+    build:
+      context: install/
+      dockerfile: Dockerfile-redissentinel
+    command:
+    - redis-server
+    - /redis/sentinel.conf
+    - --sentinel
+    - --port
+    - '26379'
+    restart: always
+  vptressource:
+    build:
+      context: .
+      dockerfile: install/Dockerfile-worker-vptressource
+    depends_on:
+    - sentinel
+    environment:
+      REDIS_DB: '1'
+      SENTINEL_HOST: sentinel
+      SENTINEL_PORT: '26379'
+    image: adeo/worker-vptressource
+version: '3'

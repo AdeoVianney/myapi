@@ -1,0 +1,46 @@
+[
+  {
+    "enabled": true,
+    "description": "Vptressource management",
+    "class": "resources.vptressource@Vptressource",
+    "endpoint": "vptressource",
+    "url": "/vptressource"
+  },
+
+  {
+    "enabled": true,
+    "description": "Get vptressource status",
+    "class": "resources.vptressource@VptressourceStatusById",
+    "endpoint": "vptressourceStatusById",
+    "url": "/vptressource/<string:id>/status"
+  },
+  {
+    "enabled": true,
+    "description": "Get first vptressource",
+    "class": "resources.vptressource@VptressourceFirstById",
+    "endpoint": "vptressourceFirstById",
+    "url": "/vptressource/<string:id>/first"
+  },
+  {
+    "enabled": true,
+    "description": "Get first vptressource",
+    "class": "resources.vptressource@VptressourceLastById",
+    "endpoint": "vptressourceLastById",
+    "url": "/vptressource/<string:id>/last"
+  },
+  {
+    "enabled": true,
+    "description": "Count vptressource",
+    "class": "resources.vptressource@VptressourceCountById",
+    "endpoint": "vptressourceCountById",
+    "url": "/vptressource/<string:id>/count"
+  },
+  {
+    "enabled": true,
+    "description": "Qualified vptressource management",
+    "class": "resources.vptressource@VptressourceById",
+    "endpoint": "vptressourceById",
+    "url": "/vptressource/<string:id>"
+  }
+
+]

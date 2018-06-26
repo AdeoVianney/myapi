@@ -1,0 +1,4 @@
+FROM redis:4
+
+ADD sentinel.conf /redis/sentinel.conf
+RUN chmod -R o+w /redis/

@@ -1,0 +1,40 @@
+{
+  "name": "VptressourceFirstLast",
+  "enabled": true,
+  "description": "Get vptressource first or last element",
+  "swagger": true,
+  "authentication": true,
+  "authorization": true,
+  "authentClass": "flaskit.authentication_lib.token_based@TokenAuthent",
+  "audit": 3,
+  "stats": true,
+  "statsd": false,
+  "dryrun": false,
+  "cache": 0,
+  "loglevel": "DEBUG",
+  "logbody": 1,
+  "logrequest": 3,
+  "args": {
+    "id": {
+      "description": "vptressource whose first or last element should be retrieved",
+      "dataType": "string",
+      "regexp":   "^[a-zA-Z0-9-_.]+$",
+      "location": "uri",
+      "required": true
+    },
+    "async": {
+      "description": "Set to true to do an asynchronous request",
+      "dataType": "boolean",
+      "location": "args",
+      "required": true,
+      "default": false
+    }
+  },
+  "swaggerResponseClass": "VptressourceFirstLastResponseFields",
+  "swaggerResponseMessages": [
+    {
+      "code": 200,
+      "message": "Successful operation",
+    }
+  ]
+}
